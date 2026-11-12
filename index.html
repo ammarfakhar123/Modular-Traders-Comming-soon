@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modular Traders and Brokerage — Rice Trading &amp; Brokerage | Coming Soon</title>
+  <meta name="description" content="Modular Traders and Brokerage — Authentic Pakistani Basmati & Non-Basmati Rice Trading and Brokerage. Website coming soon. Contact: info@modularagro.com." />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-page: #f6f5f0;
+      --surface-white: #ffffff;
+      --green-dark: #09301b;
+      --green-mid: #144d2d;
+      --text-body: #3e4e44;
+      --text-muted: #647369;
+      --gold: #c89216;
+      --gold-bright: #dfb03d;
+      --border-soft: rgba(9, 48, 27, 0.08);
+      --pill-bg: #f1efe7;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--green-dark);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(14px, 2.5vw, 24px) clamp(14px, 3vw, 32px);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: clamp(16px, 2.2vw, 22px);
+    }
+
+    /* Top Floating Pill Navbar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 10px 14px 10px 24px;
+      box-shadow: 0 8px 30px rgba(9, 48, 27, 0.04);
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand-logo img {
+      height: clamp(32px, 4vw, 42px);
+      width: auto;
+      display: block;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      color: var(--green-dark);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(200, 146, 22, 0.18);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px 8px 18px;
+      border-radius: 999px;
+      background: var(--green-dark);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--green-mid);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--green-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Main Hero Card */
+    .hero-card {
+      position: relative;
+      flex: 1;
+      min-height: clamp(460px, 68vh, 620px);
+      border-radius: 28px;
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(125deg, #fbfaf6 0%, #f7f4ea 48%, #e8ebd8 100%);
+      box-shadow: 0 24px 60px rgba(9, 48, 27, 0.06);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: clamp(36px, 6vw, 72px) clamp(24px, 5vw, 64px);
+    }
+
+    /* Artistic Rice Field & Grain Backdrop on the Right */
+    .hero-artwork {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-artwork svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Soft left readability veil matching the reference hero */
+    .hero-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(251, 250, 246, 0.98) 0%,
+        rgba(251, 250, 246, 0.94) 44%,
+        rgba(251, 250, 246, 0.55) 70%,
+        rgba(251, 250, 246, 0.08) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 610px;
+      animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: clamp(0.7rem, 1.2vw, 0.78rem);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 20px;
+    }
+
+    .eyebrow-line {
+      width: 26px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.35rem, 5.2vw, 4.1rem);
+      font-weight: 800;
+      line-height: 1.03;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 20px;
+    }
+
+    h1 .accent {
+      color: var(--green-mid);
+    }
+
+    .hero-desc {
+      font-size: clamp(0.98rem, 1.6vw, 1.12rem);
+      line-height: 1.65;
+      color: var(--text-body);
+      max-width: 520px;
+      margin-bottom: 32px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 26px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--green-dark);
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(9, 48, 27, 0.16);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-mid);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary .arrow {
+      color: var(--gold-bright);
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .btn-secondary {
+      background: var(--surface-white);
+      color: var(--green-dark);
+      border-color: rgba(9, 48, 27, 0.12);
+      box-shadow: 0 6px 18px rgba(9, 48, 27, 0.05);
+    }
+
+    .btn-secondary:hover {
+      background: #faf9f5;
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary.copied {
+      background: var(--green-mid);
+      color: #ffffff;
+      border-color: var(--green-mid);
+    }
+
+    /* Clean Contact Line */
+    .contact-strip {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 11px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(200, 146, 22, 0.28);
+      font-size: 0.9rem;
+      color: var(--text-body);
+    }
+
+    .contact-strip-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .contact-strip a {
+      color: var(--green-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .contact-strip a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      padding: 4px 8px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer a {
+      color: var(--green-dark);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.65;
+        transform: scale(0.9);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        padding: 10px 14px;
+      }
+
+      .status-tag {
+        display: none;
+      }
+
+      .hero-card {
+        border-radius: 22px;
+        min-height: auto;
+        padding: 36px 22px;
+      }
+
+      .hero-veil {
+        background: linear-gradient(
+          180deg,
+          rgba(251, 250, 246, 0.96) 0%,
+          rgba(251, 250, 246, 0.9) 68%,
+          rgba(251, 250, 246, 0.72) 100%
+        );
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .footer {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top Floating Pill Header -->
+    <header class="topbar">
+      <a class="brand-logo" href="#" aria-label="Modular Traders and Brokerage Home">
+        <img src="logo.png" alt="Modular Traders and Brokerage Logo" width="1024" height="341" />
+      </a>
+
+      <div class="topbar-right">
+        <span class="status-tag">
+          <span class="status-dot" aria-hidden="true"></span>
+          Coming Soon
+        </span>
+        <a class="nav-cta" href="mailto:info@modularagro.com">
+          <span>Contact Us</span>
+          <span class="nav-cta-circle" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7" />
+              <path d="M7 7h10v10" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Coming Soon Card -->
+    <main class="hero-card">
+      <!-- Atmospheric Rice Paddy & Golden Grain Vector Scene -->
+      <div class="hero-artwork" aria-hidden="true">
+        <svg viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fbfaf6" />
+              <stop offset="55%" stop-color="#f3f0e2" />
+              <stop offset="100%" stop-color="#dfe6cf" />
+            </linearGradient>
+            <radialGradient id="sunGlow" cx="78%" cy="28%" r="42%">
+              <stop offset="0%" stop-color="#f7df94" stop-opacity="0.72" />
+              <stop offset="55%" stop-color="#e8c86a" stop-opacity="0.22" />
+              <stop offset="100%" stop-color="#f7df94" stop-opacity="0" />
+            </radialGradient>
+            <linearGradient id="hillFar" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#8ba68e" stop-opacity="0.34" />
+              <stop offset="100%" stop-color="#b7c6af" stop-opacity="0.14" />
+            </linearGradient>
+            <linearGradient id="hillMid" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#618565" stop-opacity="0.36" />
+              <stop offset="100%" stop-color="#8aa881" stop-opacity="0.18" />
+            </linearGradient>
+            <linearGradient id="fieldGold" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#d7c982" stop-opacity="0.28" />
+              <stop offset="55%" stop-color="#b5be6e" stop-opacity="0.46" />
+              <stop offset="100%" stop-color="#5d8347" stop-opacity="0.55" />
+            </linearGradient>
+            <linearGradient id="fieldDeep" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#7c9a55" stop-opacity="0.32" />
+              <stop offset="100%" stop-color="#205232" stop-opacity="0.58" />
+            </linearGradient>
+            <linearGradient id="grainGold" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f1cc63" />
+              <stop offset="100%" stop-color="#b77e11" />
+            </linearGradient>
+          </defs>
+
+          <!-- Sky & Morning Sunlight -->
+          <rect width="1200" height="620" fill="url(#skyGrad)" />
+          <rect width="1200" height="620" fill="url(#sunGlow)" />
+
+          <!-- Distant Misty Hills -->
+          <path d="M360,340 Q560,210 740,265 T1060,220 L1200,245 L1200,620 L360,620 Z" fill="url(#hillFar)" />
+          <path d="M440,365 Q650,260 850,305 T1200,275 L1200,620 L440,620 Z" fill="url(#hillMid)" />
+
+          <!-- Sunlit Golden Rice Terraces / Paddy Fields -->
+          <path d="M320,415 Q640,355 940,385 T1200,360 L1200,620 L320,620 Z" fill="url(#fieldGold)" />
+          <path d="M420,485 Q720,425 990,460 T1200,440 L1200,620 L420,620 Z" fill="url(#fieldDeep)" />
+
+          <!-- Subtle Rice Field Horizon Lines -->
+          <path d="M510,430 Q790,390 1200,408" fill="none" stroke="#e9cf7d" stroke-opacity="0.45" stroke-width="2" />
+          <path d="M560,502 Q860,468 1200,490" fill="none" stroke="#c8d69b" stroke-opacity="0.35" stroke-width="1.5" />
+
+          <!-- Foreground Golden Rice Stalks & Grains (Right Side) -->
+          <g transform="translate(830, 185)" opacity="0.92">
+            <!-- Stalk 1 -->
+            <path d="M120,440 Q105,270 155,140 Q180,82 225,52" fill="none" stroke="#2c5e35" stroke-width="3.2" stroke-linecap="round" />
+            <path d="M118,370 Q70,295 45,250" fill="none" stroke="#3b7341" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M124,315 Q178,245 220,210" fill="none" stroke="#3b7341" stroke-width="2.5" stroke-linecap="round" />
+            <!-- Rice Panicle Grains on Stalk 1 -->
+            <g fill="url(#grainGold)">
+              <ellipse cx="164" cy="126" rx="5.5" ry="12" transform="rotate(-28 164 126)" />
+              <ellipse cx="180" cy="112" rx="5.5" ry="12" transform="rotate(-12 180 112)" />
+              <ellipse cx="176" cy="95" rx="5.5" ry="12" transform="rotate(-38 176 95)" />
+              <ellipse cx="195" cy="84" rx="5.5" ry="12" transform="rotate(-18 195 84)" />
+              <ellipse cx="194" cy="68" rx="5" ry="11" transform="rotate(-44 194 68)" />
+              <ellipse cx="212" cy="61" rx="5" ry="11" transform="rotate(-24 212 61)" />
+              <ellipse cx="228" cy="48" rx="4.5" ry="10" transform="rotate(-34 228 48)" />
+            </g>
+
+            <!-- Stalk 2 -->
+            <path d="M225,440 Q215,280 265,165 Q288,118 326,95" fill="none" stroke="#1d4b29" stroke-width="3.4" stroke-linecap="round" />
+            <path d="M225,350 Q180,275 152,238" fill="none" stroke="#2f6738" stroke-width="2.4" stroke-linecap="round" />
+            <g fill="url(#grainGold)">
+              <ellipse cx="272" cy="152" rx="5.5" ry="12" transform="rotate(-24 272 152)" />
+              <ellipse cx="288" cy="138" rx="5.5" ry="12" transform="rotate(-8 288 138)" />
+              <ellipse cx="285" cy="120" rx="5.5" ry="12" transform="rotate(-34 285 120)" />
+              <ellipse cx="302" cy="111" rx="5" ry="11" transform="rotate(-16 302 111)" />
+              <ellipse cx="318" cy="98" rx="4.8" ry="10.5" transform="rotate(-28 318 98)" />
+              <ellipse cx="332" cy="88" rx="4.5" ry="9.5" transform="rotate(-38 332 88)" />
+            </g>
+
+            <!-- Stalk 3 (Gentle Curve Left) -->
+            <path d="M62,440 Q52,320 22,225 Q4,178 -25,152" fill="none" stroke="#366c3d" stroke-width="2.8" stroke-linecap="round" />
+            <g fill="url(#grainGold)">
+              <ellipse cx="14" cy="206" rx="5" ry="11" transform="rotate(24 14 206)" />
+              <ellipse cx="0" cy="192" rx="5" ry="11" transform="rotate(42 0 192)" />
+              <ellipse cx="-2" cy="173" rx="4.8" ry="10.5" transform="rotate(18 -2 173)" />
+              <ellipse cx="-16" cy="160" rx="4.8" ry="10.5" transform="rotate(38 -16 160)" />
+              <ellipse cx="-28" cy="146" rx="4.4" ry="9.5" transform="rotate(30 -28 146)" />
+            </g>
+          </g>
+
+          <!-- Subtle Pure White Basmati Grain Accents in Lower Right -->
+          <g transform="translate(870, 505)" opacity="0.92">
+            <ellipse cx="85" cy="70" rx="135" ry="42" fill="#e6d3a7" opacity="0.55" />
+            <g fill="#fcfbf7" stroke="#e2dac4" stroke-width="0.6">
+              <ellipse cx="30" cy="65" rx="12" ry="3.5" transform="rotate(-12 30 65)" />
+              <ellipse cx="56" cy="58" rx="13" ry="3.6" transform="rotate(8 56 58)" />
+              <ellipse cx="82" cy="66" rx="12" ry="3.5" transform="rotate(-6 82 66)" />
+              <ellipse cx="108" cy="59" rx="13" ry="3.6" transform="rotate(14 108 59)" />
+              <ellipse cx="134" cy="67" rx="12" ry="3.5" transform="rotate(-16 134 67)" />
+              <ellipse cx="44" cy="74" rx="13" ry="3.6" transform="rotate(5 44 74)" />
+              <ellipse cx="72" cy="77" rx="12.5" ry="3.5" transform="rotate(-10 72 77)" />
+              <ellipse cx="98" cy="73" rx="13" ry="3.6" transform="rotate(6 98 73)" />
+              <ellipse cx="122" cy="78" rx="12" ry="3.5" transform="rotate(-4 122 78)" />
+              <ellipse cx="66" cy="49" rx="12" ry="3.4" transform="rotate(-18 66 49)" />
+              <ellipse cx="92" cy="50" rx="12.5" ry="3.5" transform="rotate(11 92 50)" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-veil" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="eyebrow">
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          <span>Modular Traders and Brokerage &bull; Rice Trading &amp; Brokerage</span>
+        </div>
+
+        <h1>
+          Our Website<br />
+          <span class="accent">Coming Soon</span>
+        </h1>
+
+        <p class="hero-desc">
+          Sourcing authentic Pakistani Basmati and Non-Basmati rice directly from trusted mills — delivering natural aroma, pure grain quality, and dependable brokerage.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:info@modularagro.com">
+            <span>Email Us</span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <button type="button" class="btn btn-secondary" id="copyEmailBtn" aria-label="Copy email address info@modularagro.com">
+            Copy Email
+          </button>
+        </div>
+
+        <div class="contact-strip">
+          <span class="contact-strip-label">Contact Info</span>
+          <a href="mailto:info@modularagro.com">info@modularagro.com</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="footer">
+      <span>&copy; <span id="year">2026</span> Modular Traders and Brokerage. All rights reserved.</span>
+      <span>Inquiries: <a href="mailto:info@modularagro.com">info@modularagro.com</a></span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const copyBtn = document.getElementById("copyEmailBtn");
+    copyBtn.addEventListener("click", async () => {
+      const email = "info@modularagro.com";
+      try {
+        await navigator.clipboard.writeText(email);
+        copyBtn.textContent = "Copied ✓";
+        copyBtn.classList.add("copied");
+        setTimeout(() => {
+          copyBtn.textContent = "Copy Email";
+          copyBtn.classList.remove("copied");
+        }, 2000);
+      } catch {
+        window.location.href = "mailto:" + email;
+      }
+    });
+  </script>
+</body>
+</html>
